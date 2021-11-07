@@ -2984,7 +2984,7 @@
         // The focusin event handles the chance of focus changing after the keyboard shows.
         // Windows Phone - if you preventDefault on a video element then you cannot operate
         // its native controls.
-        if (!ionic.Platform.isIOS() || !tapActiveElement().tagName == "SELECT"){
+        if (!ionic.Platform.isIOS() || !(tapActiveElement().tagName == "SELECT")){
           e.preventDefault();
         }
 
@@ -3153,7 +3153,7 @@
     var ele = tapActiveElement();
     if (ele && ((/^(input|textarea|select)$/i).test(ele.tagName) || ele.isContentEditable)) {
       //console.log('tapFocusOutActive', ele.tagName);
-      if (!ionic.Platform.isIOS() || !tapActiveElement().tagName == "SELECT"){
+      if (!ionic.Platform.isIOS() || !(tapActiveElement().tagName == "SELECT")){
         ele.blur();
       }
 
@@ -5302,7 +5302,7 @@
           self.__hasStarted = true;
           self.doTouchStart(getEventTouches(e), e.timeStamp);
           //select.blur does not apply the selected option on ios
-          if (!ionic.Platform.isIOS() || !tapActiveElement().tagName == "SELECT"){
+          if (!ionic.Platform.isIOS() || !(tapActiveElement().tagName == "SELECT")){
             e.preventDefault();
           }
 

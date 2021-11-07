@@ -2984,7 +2984,9 @@ function tapMouseDown(e) {
       // The focusin event handles the chance of focus changing after the keyboard shows.
       // Windows Phone - if you preventDefault on a video element then you cannot operate
       // its native controls.
-      e.preventDefault();
+      if (!ionic.Platform.isIOS() || !(tapActiveElement().tagName == "SELECT")){
+        e.preventDefault();
+      }
     }
 
     return false;
@@ -3150,7 +3152,9 @@ function tapFocusOutActive() {
   var ele = tapActiveElement();
   if (ele && ((/^(input|textarea|select)$/i).test(ele.tagName) || ele.isContentEditable)) {
     //console.log('tapFocusOutActive', ele.tagName);
-    ele.blur();
+    if (!ionic.Platform.isIOS() || !(tapActiveElement().tagName == "SELECT")) {
+      ele.blur();
+    }
   }
   tapActiveElement(null);
 }
@@ -5295,7 +5299,9 @@ ionic.views.Scroll = ionic.views.View.inherit({
       self.__enableScrollY = true;
       self.__hasStarted = true;
       self.doTouchStart(getEventTouches(e), e.timeStamp);
-      e.preventDefault();
+      if (!ionic.Platform.isIOS() || !(tapActiveElement().tagName == "SELECT")){
+        e.preventDefault();
+      }
     };
 
     self.touchMove = function(e) {

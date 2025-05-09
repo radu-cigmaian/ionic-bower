@@ -52629,7 +52629,10 @@
               }
 
               return $timeout(function() {
-                if (!modalStack.length) {
+                const filteredModalStack = modalStack.filter((modal) => {
+                  return !!modal.modalEl;
+                });
+                if (!filteredModalStack.length) {
                   $ionicBody.removeClass(self.viewType + '-open');
                 }
                 self.el.classList.add('hide');
@@ -53633,6 +53636,8 @@
           function showPopup(options) {
             var popup = $ionicPopup._createPopup(options);
             var showDelay = 0;
+
+            console.dir(popupStack);
 
             if (popupStack.length > 0) {
               showDelay = config.stackPushDelay;
